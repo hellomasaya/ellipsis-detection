@@ -128,22 +128,21 @@ def find_licensor(sentence_parse):
                     licensors.append([word.text,i,word.pos_,word.tag_])
 
         #for one-anaphora
-
+        
 
     return licensors    
 
 
 def find_antecedent(licensor, sentence_parse):
     #search based on POS tag
-	tag_to_search = licensor[2] 
-    
-	antecedents = []
-	for i,word in enumerate(sentence_parse):
-		if word.text.lower() != licensor[0].lower():
-			if word.pos_ == tag_to_search :
-				antecedents.append([sentence_parse[i+1].text,i+1,sentence_parse[i+1].pos_,sentence_parse[i+1].tag_])
+    tag_to_search = licensor[2]
+    antecedents = []
+    for i,word in enumerate(sentence_parse):
+        if word.text.lower() != licensor[0].lower():
+            if word.pos_ == tag_to_search:
+                antecedents.append([sentence_parse[i+1].text,i+1,sentence_parse[i+1].pos_,sentence_parse[i+1].tag_])
 
-	return antecedents
+    return antecedents
 
 
 if __name__ == '__main__':
@@ -161,6 +160,3 @@ if __name__ == '__main__':
             print("Antecedent:",antecedent)
 
     f.close()
-
-
-    #one-anaphora,most were, ending with jj and antecedent
